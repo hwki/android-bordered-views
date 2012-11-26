@@ -13,7 +13,7 @@ Screenshots
 Usage
 -----
 
-* See attrs.xml for the complete list of attributes.
+See attrs.xml for the complete list of attributes.
 
     <com.brentpanther.borderedviews.BorderedTextView
         xmlns:b="http://schemas.android.com/apk/res-auto"
