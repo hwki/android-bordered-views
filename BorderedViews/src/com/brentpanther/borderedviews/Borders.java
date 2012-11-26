@@ -10,6 +10,7 @@ import android.graphics.Path;
 import android.graphics.Path.Direction;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 
 public class Borders {
@@ -25,12 +26,17 @@ public class Borders {
 		TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.Borders, 0, 0);
 		radii = new float[4];
 		try {
-			if(a.hasValue(R.styleable.Borders_backgroundColor)) {
-				background = a.getColor(R.styleable.Borders_backgroundColor, -1);
-				view.setBackgroundColor(Color.TRANSPARENT);
+			background = Color.TRANSPARENT;
+			if(a.hasValue(R.styleable.Borders_android_background)) {
+				TypedValue v = a.peekValue(R.styleable.Borders_android_background);
+				if(v.type == TypedValue.TYPE_INT_COLOR_ARGB4 || v.type == TypedValue.TYPE_INT_COLOR_ARGB8
+					|| v.type == TypedValue.TYPE_INT_COLOR_RGB4 || v.type == TypedValue.TYPE_INT_COLOR_RGB8) {
+					background = a.getColor(R.styleable.Borders_android_background, -1);
+					view.setBackgroundColor(Color.TRANSPARENT);				
+				} 
 			}
-			if(a.hasValue(R.styleable.Borders_radius)) {
-				int radius = a.getInt(R.styleable.Borders_radius, 0);
+			if(a.hasValue(R.styleable.Borders_border_radius)) {
+				int radius = a.getInt(R.styleable.Borders_border_radius, 0);
 				radii = new float[] {radius, radius, radius, radius};
 			} else {
 				radii[0] = a.getInt(R.styleable.Borders_radiusTopLeft, 0);
