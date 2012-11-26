@@ -6,9 +6,9 @@ Custom views for Android that support borders (optionally rounded).
 Screenshots
 -----------
 
-![BorderedTextView](https://github.com/hwki/android-bordered-views/raw/master/screens/screen1.png
+![BorderedTextView](https://raw.github.com/hwki/android-bordered-views/master/BorderedViews/screens/screen1.png)
 
-![BorderedTextView rounded](https://github.com/hwki/android-bordered-views/raw/master/screens/screen2.png
+![BorderedTextView rounded](https://raw.github.com/hwki/android-bordered-views/master/BorderedViews/screens/screen2.png)
 
 Usage
 -----
