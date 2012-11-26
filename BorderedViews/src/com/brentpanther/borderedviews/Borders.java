@@ -79,5 +79,46 @@ public class Borders {
 		path.addRoundRect(rectangle, r, Direction.CW);
 		canvas.drawPath(path, paint);
 	}
+	
+	public void setBackgroundColor(int background) {
+		this.background = background;
+	}
+	
+	public int getBackgroundColor() {
+		return this.background;
+	}
+	
+	public void setBorders(boolean left, boolean top, boolean right, boolean bottom) {
+		int b = 0;
+		if(left) b += 4;
+		if(top) b += 1;
+		if(right) b+= 8;
+		if(bottom) b+= 2;
+		border = b;
+	}
+	
+	public void setBorderColor(int borderColor) {
+		this.borderColor = borderColor;
+	}
+	
+	public int getBorderColor() {
+		return borderColor;
+	}
+	
+	public void setBorderWidth(int borderWidth) {
+		this.borderWidth = borderWidth;
+	}
+	
+	public int getBorderWidth() {
+		return borderWidth;
+	}
+	
+	public void setRadii(float topLeft, float topRight, float bottomRight, float bottomLeft) {
+		radii = new float[] {topLeft, topRight, bottomRight, bottomLeft};
+	}
+	
+	public float[] getRadii() {
+		return radii;
+	}
 
 }
