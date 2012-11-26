@@ -75,10 +75,10 @@ public class Borders {
 			paint.setAntiAlias(true);
 			float[] r = new float[]{radii[0], radii[0], radii[1], radii[1], radii[2], radii[2], radii[3], radii[3]};
 			RectF rectangle = new RectF(0+d, 0+d, width-d, height-d);
-			if((border & 1) != 1) rectangle.top -= 2*d;
-			if((border & 2) != 2) rectangle.bottom += 2*d;
-			if((border & 4) != 4) rectangle.left -= 2*d;
-			if((border & 8) != 8) rectangle.right += 2*d;
+			if((border & 1) != 1) rectangle.top -= borderWidth;
+			if((border & 2) != 2) rectangle.bottom += borderWidth;
+			if((border & 4) != 4) rectangle.left -= borderWidth;
+			if((border & 8) != 8) rectangle.right += borderWidth;
 			path.addRoundRect(rectangle, r, Direction.CW);
 			canvas.drawPath(path, paint);
 			paint.setColor(borderColor);
