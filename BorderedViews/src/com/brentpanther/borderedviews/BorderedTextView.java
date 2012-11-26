@@ -8,6 +8,11 @@ import android.widget.TextView;
 public class BorderedTextView extends TextView {
 	
 	private Borders borders;
+	
+	public BorderedTextView(Context context) {
+		super(context);
+		borders = new Borders();
+	}
 
 	public BorderedTextView(Context context, AttributeSet attrs) {
 		super(context, attrs);

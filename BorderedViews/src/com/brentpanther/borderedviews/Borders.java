@@ -21,6 +21,11 @@ public class Borders {
 	private float[] radii;
 	private int background;
 	private Paint paint;
+	private boolean paddingCalculated = false;
+	
+	public Borders() {
+		paint = new Paint();
+	}
 	
 	public Borders(View view, Context context, AttributeSet attrs) {
 		TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.Borders, 0, 0);
@@ -48,8 +53,6 @@ public class Borders {
 			borderColor = a.getColor(R.styleable.Borders_borderColor, Color.BLACK);
 			border = a.getInteger(R.styleable.Borders_borders, 15);
 			
-			view.setPadding(view.getPaddingLeft() + borderWidth, view.getPaddingTop() + borderWidth,
-					view.getPaddingRight() + borderWidth, view.getPaddingBottom() + borderWidth);
 			paint = new Paint();
 		} finally {
 			a.recycle();
@@ -57,27 +60,33 @@ public class Borders {
 	}
 	
 	public void onViewDraw(View view, Canvas canvas) {
-		int width = view.getMeasuredWidth();
-		int height = view.getMeasuredHeight();
-		int d = borderWidth / 2;
-		Path path = new Path();
-		paint.setStrokeWidth(borderWidth);
-		paint.setColor(background);
-		paint.setStyle(Style.FILL);
-		paint.setAntiAlias(true);
-		float[] r = new float[]{radii[0], radii[0], radii[1], radii[1], radii[2], radii[2], radii[3], radii[3]};
-		RectF rectangle = new RectF(0+d, 0+d, width-d, height-d);
-		if((border & 1) != 1) rectangle.top -= 2*d;
-		if((border & 2) != 2) rectangle.bottom += 2*d;
-		if((border & 4) != 4) rectangle.left -= 2*d;
-		if((border & 8) != 8) rectangle.right += 2*d;
-		path.addRoundRect(rectangle, r, Direction.CW);
-		canvas.drawPath(path, paint);
-		paint.setColor(borderColor);
-		paint.setStyle(Paint.Style.STROKE);
-		path = new Path();
-		path.addRoundRect(rectangle, r, Direction.CW);
-		canvas.drawPath(path, paint);
+		if(!paddingCalculated) {
+			view.setPadding(view.getPaddingLeft() + borderWidth, view.getPaddingTop() + borderWidth,
+				view.getPaddingRight() + borderWidth, view.getPaddingBottom() + borderWidth);
+			paddingCalculated = true;
+		} else {
+			int width = view.getMeasuredWidth();
+			int height = view.getMeasuredHeight();
+			int d = borderWidth / 2;
+			Path path = new Path();
+			paint.setStrokeWidth(borderWidth);
+			paint.setColor(background);
+			paint.setStyle(Style.FILL);
+			paint.setAntiAlias(true);
+			float[] r = new float[]{radii[0], radii[0], radii[1], radii[1], radii[2], radii[2], radii[3], radii[3]};
+			RectF rectangle = new RectF(0+d, 0+d, width-d, height-d);
+			if((border & 1) != 1) rectangle.top -= 2*d;
+			if((border & 2) != 2) rectangle.bottom += 2*d;
+			if((border & 4) != 4) rectangle.left -= 2*d;
+			if((border & 8) != 8) rectangle.right += 2*d;
+			path.addRoundRect(rectangle, r, Direction.CW);
+			canvas.drawPath(path, paint);
+			paint.setColor(borderColor);
+			paint.setStyle(Paint.Style.STROKE);
+			path = new Path();
+			path.addRoundRect(rectangle, r, Direction.CW);
+			canvas.drawPath(path, paint);
+		}
 	}
 	
 	public void setBackgroundColor(int background) {

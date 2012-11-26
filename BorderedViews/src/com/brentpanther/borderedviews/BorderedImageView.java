@@ -8,6 +8,11 @@ import android.widget.ImageView;
 public class BorderedImageView extends ImageView {
 
 	private Borders borders;
+	
+	public BorderedImageView(Context context) {
+		super(context);
+		borders = new Borders();
+	}
 
 	public BorderedImageView(Context context, AttributeSet attrs) {
 		super(context, attrs);

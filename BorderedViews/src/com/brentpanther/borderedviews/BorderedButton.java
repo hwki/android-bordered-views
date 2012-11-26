@@ -8,6 +8,11 @@ import android.widget.Button;
 public class BorderedButton extends Button {
 
 	private Borders borders;
+	
+	public BorderedButton(Context context) {
+		super(context);
+		borders = new Borders();
+	}
 
 	public BorderedButton(Context context, AttributeSet attrs) {
 		super(context, attrs);
