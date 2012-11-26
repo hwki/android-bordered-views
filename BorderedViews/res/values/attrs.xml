@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Borders">
+       <attr name="borders">
+            <flag name="top" value="0x01"/>
+            <flag name="bottom" value="0x02"/>
+            <flag name="left" value="0x04"/>
+            <flag name="right" value="0x08"/>
+            <flag name="all" value="0x15"/>
+       </attr>
+       <attr name="borderWidth" format="dimension"/>
+       <attr name="borderColor" format="color"/>
+       <attr name="backgroundColor" format="color"/>
+       <attr name="radius" format="integer"/>
+       <attr name="radiusTopLeft" format="integer"/>
+       <attr name="radiusTopRight" format="integer"/>
+       <attr name="radiusBottomLeft" format="integer"/>
+       <attr name="radiusBottomRight" format="integer"/>
+   </declare-styleable>
+</resources>
