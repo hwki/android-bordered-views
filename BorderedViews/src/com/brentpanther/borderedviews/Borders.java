@@ -25,6 +25,7 @@ public class Borders {
 	
 	public Borders() {
 		paint = new Paint();
+		background = Color.TRANSPARENT;
 	}
 	
 	public Borders(View view, Context context, AttributeSet attrs) {

@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-public class BorderedTextView extends TextView {
+public class BorderedTextView extends TextView implements Bordered {
 	
 	private Borders borders;
 	
@@ -27,6 +27,7 @@ public class BorderedTextView extends TextView {
 
 	public void setBackgroundColor(int background) {
 		borders.setBackgroundColor(background);
+		postInvalidate();
 	}
 
 	public int getBackgroundColor() {
@@ -35,10 +36,12 @@ public class BorderedTextView extends TextView {
 
 	public void setBorders(boolean left, boolean top, boolean right, boolean bottom) {
 		borders.setBorders(left, top, right, bottom);
+		postInvalidate();
 	}
 
 	public void setBorderColor(int borderColor) {
 		borders.setBorderColor(borderColor);
+		postInvalidate();
 	}
 
 	public int getBorderColor() {
@@ -47,6 +50,7 @@ public class BorderedTextView extends TextView {
 
 	public void setBorderWidth(int borderWidth) {
 		borders.setBorderWidth(borderWidth);
+		postInvalidate();
 	}
 
 	public int getBorderWidth() {
@@ -55,6 +59,7 @@ public class BorderedTextView extends TextView {
 
 	public void setRadii(float topLeft, float topRight, float bottomRight, float bottomLeft) {
 		borders.setRadii(topLeft, topRight, bottomRight, bottomLeft);
+		postInvalidate();
 	}
 
 	public float[] getRadii() {

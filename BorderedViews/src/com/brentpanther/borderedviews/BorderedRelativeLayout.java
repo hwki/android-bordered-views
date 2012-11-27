@@ -3,20 +3,22 @@ package com.brentpanther.borderedviews;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
-import android.widget.Button;
+import android.widget.RelativeLayout;
 
-public class BorderedButton extends Button implements Bordered {
+public class BorderedRelativeLayout extends RelativeLayout implements Bordered {
 
 	private Borders borders;
 	
-	public BorderedButton(Context context) {
+	public BorderedRelativeLayout(Context context) {
 		super(context);
 		borders = new Borders();
+		this.setWillNotDraw(false);
 	}
 
-	public BorderedButton(Context context, AttributeSet attrs) {
+	public BorderedRelativeLayout(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		borders = new Borders(this, context, attrs);
+		this.setWillNotDraw(false);
 	}
 	
 	@Override
@@ -67,3 +69,4 @@ public class BorderedButton extends Button implements Bordered {
 	}
 
 }
+
