@@ -2,6 +2,7 @@ package com.brentpanther.borderedviews;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.widget.Button;
 
@@ -16,7 +17,16 @@ public class BorderedButton extends Button implements Bordered {
 
 	public BorderedButton(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		borders = new Borders(this, context, attrs);
+		borders = new Borders(this, context, attrs, new Borders.Closure() {
+			@Override
+			public void setBackgroundTransparent() {
+				BorderedButton.super.setBackgroundColor(Color.TRANSPARENT);
+			}
+		});
+	}
+	
+	void superSetBackgroundColor(int background) {
+		super.setBackgroundColor(background);
 	}
 	
 	@Override

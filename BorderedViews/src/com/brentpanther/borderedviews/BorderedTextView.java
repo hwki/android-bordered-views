@@ -2,6 +2,7 @@ package com.brentpanther.borderedviews;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
@@ -16,7 +17,12 @@ public class BorderedTextView extends TextView implements Bordered {
 
 	public BorderedTextView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		borders = new Borders(this, context, attrs);
+		borders = new Borders(this, context, attrs, new Borders.Closure() {
+			@Override
+			public void setBackgroundTransparent() {
+				BorderedTextView.super.setBackgroundColor(Color.TRANSPARENT);
+			}
+		});
 	}
 	
 	@Override
