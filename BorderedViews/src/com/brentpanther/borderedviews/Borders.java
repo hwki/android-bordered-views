@@ -22,18 +22,14 @@ public class Borders {
 	private int background;
 	private Paint paint;
 	private boolean paddingCalculated = false;
+	boolean needToSetBackgroundTransparent;
 	
 	public Borders() {
 		paint = new Paint();
 		background = Color.TRANSPARENT;
-	}
-	
-	interface Closure {
-		void setBackgroundTransparent();
-	}
-	
+	}	
 
-	public Borders(Bordered view, Context context, AttributeSet attrs, Closure c) {
+	public Borders(Bordered view, Context context, AttributeSet attrs) {
 		TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.Borders, 0, 0);
 		radii = new float[4];
 		try {
@@ -43,7 +39,7 @@ public class Borders {
 				if(v.type == TypedValue.TYPE_INT_COLOR_ARGB4 || v.type == TypedValue.TYPE_INT_COLOR_ARGB8
 					|| v.type == TypedValue.TYPE_INT_COLOR_RGB4 || v.type == TypedValue.TYPE_INT_COLOR_RGB8) {
 					background = a.getColor(R.styleable.Borders_android_background, -1);
-					c.setBackgroundTransparent();
+					needToSetBackgroundTransparent = true;
 				} 
 			}
 			if(a.hasValue(R.styleable.Borders_border_radius)) {

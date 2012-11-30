@@ -18,12 +18,8 @@ public class BorderedLinearLayout extends LinearLayout implements Bordered {
 
 	public BorderedLinearLayout(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		borders = new Borders(this, context, attrs, new Borders.Closure() {
-			@Override
-			public void setBackgroundTransparent() {
-				BorderedLinearLayout.super.setBackgroundColor(Color.TRANSPARENT);
-			}
-		});
+		borders = new Borders(this, context, attrs);
+		if(borders.needToSetBackgroundTransparent) super.setBackgroundColor(Color.TRANSPARENT);
 		this.setWillNotDraw(false);
 	}
 	

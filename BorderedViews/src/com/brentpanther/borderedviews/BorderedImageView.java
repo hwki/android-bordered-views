@@ -17,12 +17,8 @@ public class BorderedImageView extends ImageView implements Bordered {
 
 	public BorderedImageView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		borders = new Borders(this, context, attrs, new Borders.Closure() {
-			@Override
-			public void setBackgroundTransparent() {
-				BorderedImageView.super.setBackgroundColor(Color.TRANSPARENT);
-			}
-		});
+		borders = new Borders(this, context, attrs);
+		if(borders.needToSetBackgroundTransparent) super.setBackgroundColor(Color.TRANSPARENT);
 	}
 	
 	void superSetBackgroundColor(int background) {

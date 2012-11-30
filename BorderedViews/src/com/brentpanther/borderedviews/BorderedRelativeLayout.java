@@ -18,12 +18,8 @@ public class BorderedRelativeLayout extends RelativeLayout implements Bordered {
 
 	public BorderedRelativeLayout(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		borders = new Borders(this, context, attrs, new Borders.Closure() {
-			@Override
-			public void setBackgroundTransparent() {
-				BorderedRelativeLayout.super.setBackgroundColor(Color.TRANSPARENT);
-			}
-		});
+		borders = new Borders(this, context, attrs);
+		if(borders.needToSetBackgroundTransparent) super.setBackgroundColor(Color.TRANSPARENT);
 		this.setWillNotDraw(false);
 	}
 	

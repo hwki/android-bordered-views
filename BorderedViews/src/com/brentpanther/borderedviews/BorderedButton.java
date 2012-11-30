@@ -17,12 +17,8 @@ public class BorderedButton extends Button implements Bordered {
 
 	public BorderedButton(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		borders = new Borders(this, context, attrs, new Borders.Closure() {
-			@Override
-			public void setBackgroundTransparent() {
-				BorderedButton.super.setBackgroundColor(Color.TRANSPARENT);
-			}
-		});
+		borders = new Borders(this, context, attrs);
+		if(borders.needToSetBackgroundTransparent) super.setBackgroundColor(Color.TRANSPARENT);
 	}
 	
 	void superSetBackgroundColor(int background) {

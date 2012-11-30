@@ -30,6 +30,7 @@ See attrs.xml for the complete list of attributes.
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:text="This is sample text"
+        android:background="#00ff00"
         b:radiusTopLeft="15"
         b:radiusTopRight="15"
         b:borderWidth="2dp"
