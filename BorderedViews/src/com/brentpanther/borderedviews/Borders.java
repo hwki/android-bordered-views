@@ -21,7 +21,6 @@ public class Borders {
 	private float[] radii;
 	private int background;
 	private Paint paint;
-	private boolean paddingCalculated = false;
 	boolean needToSetBackgroundTransparent;
 	
 	public Borders() {
@@ -61,12 +60,12 @@ public class Borders {
 		}
 	}
 	
-	public void onViewDraw(View view, Canvas canvas) {
-		if(!paddingCalculated) {
-			view.setPadding(view.getPaddingLeft() + borderWidth, view.getPaddingTop() + borderWidth,
+	public void onMeasure(View view, int widthMeasureSpec, int heightMeasureSpec) {
+		view.setPadding(view.getPaddingLeft() + borderWidth, view.getPaddingTop() + borderWidth,
 				view.getPaddingRight() + borderWidth, view.getPaddingBottom() + borderWidth);
-			paddingCalculated = true;
-		} else {
+	}
+	
+	public void onViewDraw(View view, Canvas canvas) {
 			int width = view.getMeasuredWidth();
 			int height = view.getMeasuredHeight();
 			int d = borderWidth / 2;
@@ -88,7 +87,6 @@ public class Borders {
 			path = new Path();
 			path.addRoundRect(rectangle, r, Direction.CW);
 			canvas.drawPath(path, paint);
-		}
 	}
 	
 	public void setBackgroundColor(int background) {

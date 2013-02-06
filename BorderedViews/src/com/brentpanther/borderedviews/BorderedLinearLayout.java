@@ -73,6 +73,12 @@ public class BorderedLinearLayout extends LinearLayout implements Bordered {
 	public float[] getRadii() {
 		return borders.getRadii();
 	}
+	
+	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+		borders.onMeasure(this, widthMeasureSpec, heightMeasureSpec);
+	}
 
 }
 
