@@ -13,10 +13,8 @@
        <attr name="borderWidth" format="dimension"/>
        <!-- Color of the border -->
        <attr name="borderColor" format="color"/>
-       <!-- The background of the view. -->
-       <attr name="android:background"/>
        <!-- The radius of all corners -->
-       <attr name="border_radius" format="integer"/>
+       <attr name="borderRadius" format="integer"/>
        <!-- The radius of the top left corner -->
        <attr name="radiusTopLeft" format="integer"/>
        <!-- The radius of the top right corner -->

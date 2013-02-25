@@ -2,11 +2,10 @@ package com.brentpanther.borderedviews;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
-public class BorderedLinearLayout extends LinearLayout implements Bordered {
+public class BorderedLinearLayout extends LinearLayout {
 
 	private Borders borders;
 	
@@ -18,28 +17,15 @@ public class BorderedLinearLayout extends LinearLayout implements Bordered {
 
 	public BorderedLinearLayout(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		borders = new Borders(this, context, attrs);
-		if(borders.needToSetBackgroundTransparent) super.setBackgroundColor(Color.TRANSPARENT);
+		borders = new Borders(context, attrs);
 		this.setWillNotDraw(false);
-	}
-	
-	void superSetBackgroundColor(int background) {
-		super.setBackgroundColor(background);
 	}
 	
 	@Override
 	protected void onDraw(Canvas canvas) {
-		borders.onViewDraw(this, canvas);
+		borders.translate(canvas);
 		super.onDraw(canvas);
-	}
-	
-	public void setBackgroundColor(int background) {
-		borders.setBackgroundColor(background);
-		postInvalidate();
-	}
-
-	public int getBackgroundColor() {
-		return borders.getBackgroundColor();
+		borders.onViewDraw(this, canvas);
 	}
 
 	public void setBorders(boolean left, boolean top, boolean right, boolean bottom) {
@@ -77,7 +63,9 @@ public class BorderedLinearLayout extends LinearLayout implements Bordered {
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-		borders.onMeasure(this, widthMeasureSpec, heightMeasureSpec);
+		int w = borders.getMeasuredWidth(this, widthMeasureSpec);
+		int h = borders.getMeasuredHeight(this, heightMeasureSpec);
+		setMeasuredDimension(w, h);
 	}
 
 }

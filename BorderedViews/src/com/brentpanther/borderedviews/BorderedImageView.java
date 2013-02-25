@@ -2,11 +2,10 @@ package com.brentpanther.borderedviews;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-public class BorderedImageView extends ImageView implements Bordered {
+public class BorderedImageView extends ImageView {
 
 	private Borders borders;
 	
@@ -17,27 +16,14 @@ public class BorderedImageView extends ImageView implements Bordered {
 
 	public BorderedImageView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		borders = new Borders(this, context, attrs);
-		if(borders.needToSetBackgroundTransparent) super.setBackgroundColor(Color.TRANSPARENT);
-	}
-	
-	void superSetBackgroundColor(int background) {
-		super.setBackgroundColor(background);
+		borders = new Borders(context, attrs);
 	}
 	
 	@Override
 	protected void onDraw(Canvas canvas) {
-		borders.onViewDraw(this, canvas);
+		borders.translate(canvas);
 		super.onDraw(canvas);
-	}
-	
-	public void setBackgroundColor(int background) {
-		borders.setBackgroundColor(background);
-		postInvalidate();
-	}
-
-	public int getBackgroundColor() {
-		return borders.getBackgroundColor();
+		borders.onViewDraw(this, canvas);
 	}
 
 	public void setBorders(boolean left, boolean top, boolean right, boolean bottom) {
@@ -75,7 +61,9 @@ public class BorderedImageView extends ImageView implements Bordered {
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-		borders.onMeasure(this, widthMeasureSpec, heightMeasureSpec);
+		int w = borders.getMeasuredWidth(this, widthMeasureSpec);
+		int h = borders.getMeasuredHeight(this, heightMeasureSpec);
+		setMeasuredDimension(w, h);
 	}
 
 }
