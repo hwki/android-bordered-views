@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 public class BorderedRelativeLayout extends RelativeLayout {
 
 	private Borders borders;
+	private boolean paddingCalculated;
 	
 	public BorderedRelativeLayout(Context context) {
 		super(context);
@@ -23,9 +24,13 @@ public class BorderedRelativeLayout extends RelativeLayout {
 	
 	@Override
 	protected void onDraw(Canvas canvas) {
-		borders.translate(canvas);
-		super.onDraw(canvas);
-		borders.onViewDraw(this, canvas);
+		if(!paddingCalculated) {
+			setPadding(getPaddingLeft() + borders.getLeftBorder(), getPaddingTop() + borders.getTopBorder(),
+				getPaddingRight() + borders.getRightBorder(), getPaddingBottom() + borders.getBottomBorder());
+			paddingCalculated = true;
+		} else {
+			borders.onViewDraw(this, canvas);
+		}
 	}
 
 
@@ -59,14 +64,6 @@ public class BorderedRelativeLayout extends RelativeLayout {
 
 	public float[] getRadii() {
 		return borders.getRadii();
-	}
-	
-	@Override
-	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-		int w = borders.getMeasuredWidth(this, widthMeasureSpec);
-		int h = borders.getMeasuredHeight(this, heightMeasureSpec);
-		setMeasuredDimension(w, h);
 	}
 
 }

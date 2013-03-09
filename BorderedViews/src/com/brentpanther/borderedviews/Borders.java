@@ -47,7 +47,6 @@ public class Borders {
 	}
 	
 	public void onViewDraw(View view, Canvas canvas) {
-		canvas.restore();
 		int width = view.getMeasuredWidth();
 		int height = view.getMeasuredHeight();
 		int d = borderWidth / 2;
@@ -67,19 +66,19 @@ public class Borders {
 		canvas.drawPath(path, paint);
 	}
 	
-	private int getTopBorder() {
+	public int getTopBorder() {
 		return checkBitInt(0) * borderWidth;
 	}
 	
-	private int getBottomBorder() {
+	public int getBottomBorder() {
 		return checkBitInt(1) * borderWidth;
 	}
 	
-	private int getLeftBorder() {
+	public int getLeftBorder() {
 		return checkBitInt(2) * borderWidth;
 	}
 	
-	private int getRightBorder() {
+	public int getRightBorder() {
 		return checkBitInt(3) * borderWidth;
 	}
 	

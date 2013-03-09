@@ -23,6 +23,7 @@ public class BorderedTextView extends TextView {
 	protected void onDraw(Canvas canvas) {
 		borders.translate(canvas);
 		super.onDraw(canvas);
+		canvas.restore();
 		borders.onViewDraw(this, canvas);
 	}
 	

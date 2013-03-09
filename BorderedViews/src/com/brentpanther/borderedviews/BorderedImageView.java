@@ -23,7 +23,14 @@ public class BorderedImageView extends ImageView {
 	protected void onDraw(Canvas canvas) {
 		borders.translate(canvas);
 		super.onDraw(canvas);
+		canvas.restore();
 		borders.onViewDraw(this, canvas);
+	}
+	
+	@Override
+	public void draw(Canvas canvas) {
+		borders.draw(this, canvas);
+		super.draw(canvas);
 	}
 
 	public void setBorders(boolean left, boolean top, boolean right, boolean bottom) {

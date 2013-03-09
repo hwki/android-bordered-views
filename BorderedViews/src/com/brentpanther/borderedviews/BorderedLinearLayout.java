@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 public class BorderedLinearLayout extends LinearLayout {
 
 	private Borders borders;
+	private boolean paddingCalculated;
 	
 	public BorderedLinearLayout(Context context) {
 		super(context);
@@ -23,9 +24,13 @@ public class BorderedLinearLayout extends LinearLayout {
 	
 	@Override
 	protected void onDraw(Canvas canvas) {
-		borders.translate(canvas);
-		super.onDraw(canvas);
-		borders.onViewDraw(this, canvas);
+		if(!paddingCalculated) {
+			setPadding(getPaddingLeft() + borders.getLeftBorder(), getPaddingTop() + borders.getTopBorder(),
+				getPaddingRight() + borders.getRightBorder(), getPaddingBottom() + borders.getBottomBorder());
+			paddingCalculated = true;
+		} else {
+			borders.onViewDraw(this, canvas);
+		}
 	}
 
 	public void setBorders(boolean left, boolean top, boolean right, boolean bottom) {
@@ -60,13 +65,6 @@ public class BorderedLinearLayout extends LinearLayout {
 		return borders.getRadii();
 	}
 	
-	@Override
-	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-		int w = borders.getMeasuredWidth(this, widthMeasureSpec);
-		int h = borders.getMeasuredHeight(this, heightMeasureSpec);
-		setMeasuredDimension(w, h);
-	}
 
 }
 
