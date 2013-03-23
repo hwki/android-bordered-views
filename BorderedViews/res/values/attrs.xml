@@ -14,14 +14,14 @@
        <!-- Color of the border -->
        <attr name="borderColor" format="color"/>
        <!-- The radius of all corners -->
-       <attr name="borderRadius" format="integer"/>
+       <attr name="borderRadius" format="dimension"/>
        <!-- The radius of the top left corner -->
-       <attr name="radiusTopLeft" format="integer"/>
+       <attr name="radiusTopLeft" format="dimension"/>
        <!-- The radius of the top right corner -->
-       <attr name="radiusTopRight" format="integer"/>
+       <attr name="radiusTopRight" format="dimension"/>
        <!-- The radius of the bottom left corner -->
-       <attr name="radiusBottomLeft" format="integer"/>
+       <attr name="radiusBottomLeft" format="dimension"/>
        <!-- The radius of the bottom right corner -->
-       <attr name="radiusBottomRight" format="integer"/>
+       <attr name="radiusBottomRight" format="dimension"/>
    </declare-styleable>
 </resources>

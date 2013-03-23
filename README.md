@@ -31,8 +31,8 @@ See attrs.xml for the complete list of attributes.
         android:padding="5dp"
         android:text="This is sample text"
         android:background="#00ff00"
-        b:radiusTopLeft="15"
-        b:radiusTopRight="15"
+        b:radiusTopLeft="15px"
+        b:radiusTopRight="15px"
         b:borderWidth="2dp"
         b:borderColor="#ff0000"
         b:borders="all"/>

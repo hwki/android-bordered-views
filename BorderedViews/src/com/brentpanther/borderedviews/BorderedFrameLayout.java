@@ -5,25 +5,25 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
-import android.widget.TextView;
+import android.widget.FrameLayout;
 
-public class BorderedTextView extends TextView implements Bordered {
-	
+public class BorderedFrameLayout extends FrameLayout implements Bordered {
+
 	private Borders borders;
-	
-	public BorderedTextView(Context context) {
+
+	public BorderedFrameLayout(Context context) {
 		super(context);
 		borders = new Borders();
 		setPadding(getPaddingLeft(), getPaddingTop(), getPaddingRight(), getPaddingBottom());
 	}
 
-	public BorderedTextView(Context context, AttributeSet attrs) {
+	public BorderedFrameLayout(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		borders = new Borders(context, attrs);
 		setPadding(getPaddingLeft(), getPaddingTop(), getPaddingRight(), getPaddingBottom());
 	}
 	
-	public BorderedTextView(Context context, AttributeSet attrs, int defStyle) {
+	public BorderedFrameLayout(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		borders = new Borders(context, attrs);
 		setPadding(getPaddingLeft(), getPaddingTop(), getPaddingRight(), getPaddingBottom());
@@ -72,5 +72,7 @@ public class BorderedTextView extends TextView implements Bordered {
 	public float[] getRadii() {
 		return borders.getRadii();
 	}
-	
+
 }
+
+
