@@ -2,23 +2,23 @@ package com.brentpanther.borderedviews;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.ImageView;
+import android.widget.FrameLayout;
 
-public class BorderedImageView extends ImageView implements Bordered{
+public class BorderedFrameLayout extends FrameLayout implements Bordered {
 
 	private Borders borders;
 
-    public BorderedImageView(Context context) {
+    public BorderedFrameLayout(Context context) {
         super(context);
     }
 
-    public BorderedImageView(Context context, AttributeSet attrs) {
+    public BorderedFrameLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         borders = new Borders(context, attrs);
         borders.setBackground(this);
     }
 
-    public BorderedImageView(Context context, AttributeSet attrs, int defStyle) {
+    public BorderedFrameLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         borders = new Borders(context, attrs);
         borders.setBackground(this);
@@ -51,3 +51,5 @@ public class BorderedImageView extends ImageView implements Bordered{
     }
 
 }
+
+

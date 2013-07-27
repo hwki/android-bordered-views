@@ -1,8 +1,6 @@
 package com.brentpanther.borderedviews;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
@@ -12,66 +10,43 @@ public class BorderedTextView extends TextView implements Bordered {
 	
 	public BorderedTextView(Context context) {
 		super(context);
-		borders = new Borders();
 	}
 
-	public BorderedTextView(Context context, AttributeSet attrs) {
+    public BorderedTextView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		borders = new Borders(this, context, attrs);
-		if(borders.needToSetBackgroundTransparent) super.setBackgroundColor(Color.TRANSPARENT);
+		borders = new Borders(context, attrs);
+        borders.setBackground(this);
 	}
+
+	public BorderedTextView(Context context, AttributeSet attrs, int defStyle) {
+		super(context, attrs, defStyle);
+		borders = new Borders(context, attrs);
+        borders.setBackground(this);
+	}
+
+    public void setViewPadding(int left, int top, int right, int bottom) {
+        super.setPadding(left, top, right, bottom);
+        borders.setBackground(this);
+        invalidate();
+    }
 	
-	@Override
-	protected void onDraw(Canvas canvas) {
-		borders.onViewDraw(this, canvas);
-		super.onDraw(canvas);
-	}
-
-	public void setBackgroundColor(int background) {
-		borders.setBackgroundColor(background);
-		postInvalidate();
-	}
-
-	public int getBackgroundColor() {
-		return borders.getBackgroundColor();
-	}
-
 	public void setBorders(boolean left, boolean top, boolean right, boolean bottom) {
-		borders.setBorders(left, top, right, bottom);
-		postInvalidate();
+		borders.setBorders(this, left, top, right, bottom);
 	}
 
 	public void setBorderColor(int borderColor) {
-		borders.setBorderColor(borderColor);
-		postInvalidate();
-	}
-
-	public int getBorderColor() {
-		return borders.getBorderColor();
+		borders.setBorderColor(this, borderColor);
 	}
 
 	public void setBorderWidth(int borderWidth) {
-		borders.setBorderWidth(borderWidth);
-		postInvalidate();
-	}
-
-	public int getBorderWidth() {
-		return borders.getBorderWidth();
+		borders.setBorderWidth(this, borderWidth);
 	}
 
 	public void setRadii(float topLeft, float topRight, float bottomRight, float bottomLeft) {
-		borders.setRadii(topLeft, topRight, bottomRight, bottomLeft);
-		postInvalidate();
+		borders.setRadii(this, topLeft, topRight, bottomRight, bottomLeft);
 	}
 
-	public float[] getRadii() {
-		return borders.getRadii();
-	}
-	
-	@Override
-	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-		borders.onMeasure(this, widthMeasureSpec, heightMeasureSpec);
-	}
-	
+    public void setBackgroundColor(int color) {
+        borders.setBackgroundColor(this, color);
+    }
 }
